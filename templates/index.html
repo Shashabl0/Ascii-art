@@ -1,0 +1,46 @@
+<!doctype html>
+<head>
+    <title>
+        Python Flask File Upload Example
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+    <div class="ui container" style="margin-top: 50px;">
+    <h1 align="center">ASCII IMAGE GENERATOR</h1>
+    <br />
+    <form method="post" enctype="multipart/form-data">
+    <div class="ui justified container">
+        <div class="field">
+            <h3 class="ui header" for="title">Choose a Image to Upload :</h3 >
+            <input class="ui button" type="file" name="file" accept=".jpg, .jpeg, .png" required>
+        </div><br>
+        <div class="ui input">
+        <input style="margin-right: 30px;" type="text" id="scalefac" name="scalefac" placeholder="Enter Scale 0.1 - 1.0 " required>
+        <input class="ui green button" type="submit" value="Generate">
+        </div>
+    </div>
+    </form>
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <div class="ui center segment" style="margin-top: 20px;">
+            <center>
+                <img src="{{ url_for('display_image', filename=filename) }}" height="500" width="500"><br>
+                <h5 style="margin-top: 30px;margin-bottom: 60px;"><a href="static/outImage.png" download>Click to Download</a></h5>
+            </center>
+        </div>
+    {% endif %}
+</div>    
+</body>
+</html>
