@@ -33,7 +33,7 @@ def upload_image():
 	
 		ascii_gen(filename,app.config['UPLOAD_FOLDER'],scale_factor)
 	
-		flash('ASCII Image Generated')
+		flash('ASCII art Generated')
 		return render_template('index.html', filename=filename)
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif')
@@ -45,4 +45,4 @@ def display_image(filename):
 	return redirect(url_for('static', filename='/' + 'outImage.png'), code=301)
 
 if __name__ == "__main__":
-    app.run(debug=False,host=('0.0.0.0'))
+    app.run(debug=False)
